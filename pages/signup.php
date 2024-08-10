@@ -1,9 +1,9 @@
 <?php require_once '../includes/header.php'; ?>
 
 <section class="signup-form-container">
-    <form class="signup-form" action="" method="post">
+    <form class="signup-form" method="post">
         <div id="error-message" class="error-message"></div>
-        <label for="Title" class="title">Sign Up</label>
+        <label for="Title" class="title">Sign uUp</label>
         <div class="row">
             <div class="input-group">
                 <input type="text" name="firstname" id="firstname" placeholder=" " class="input" autocomplete="off">
@@ -55,8 +55,6 @@
 <script>
     $(document).ready(function() {
 
-        $('#error-message').hide();
-
         $('.signup-form').on('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
 
@@ -69,8 +67,8 @@
             $('.signup-form .input').each(function() {
                 var input = $(this);
                 if (input.val().trim() === '') {
-                    $('#error-message').show();
 
+                    $('#error-message').addClass('show');
                     // Find the associated label
                     var label = $('label[for="' + input.attr('name') + '"]').text();
 
@@ -97,7 +95,7 @@
                 $('#error-message').text(errorMessage);
             } else {
                 // Gather form data
-                $('#error-message').hide();
+                $('#error-message').removeClass('show');
                 var formData = $(this).serialize();
 
                 // Perform the AJAX request

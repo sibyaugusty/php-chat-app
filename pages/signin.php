@@ -1,6 +1,7 @@
 <?php require_once '../includes/header.php'; ?>
 <section class="signIn-form-container">
     <form class="signIn-form" method="post">
+        <div id="error-message" class="error-message"></div>
         <label for="Title" class="title">Sign In</label>
         <div class="row">
             <div class="input-group">
@@ -18,7 +19,7 @@
         <button type="submit" class="submit-button" id="loginFormSubmit">Log In</button>
 
         <div class="form-footer">
-            <p class="is-a-member" r>Don't Have An Account? </p><a href=" ./signIn.php">Sign Up</a>
+            <p class="is-a-member" r>Don't Have An Account? </p><a href="./signup.php">Sign Up</a>
         </div>
     </form>
 
@@ -26,7 +27,6 @@
 <?php require_once '../includes/footer.php' ?>
 <script>
     $(document).ready(function() {
-
         $('.signIn-form').on('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
 
@@ -39,7 +39,7 @@
             $('.signIn-form .input').each(function() {
                 var input = $(this);
                 if (input.val().trim() === '') {
-                    $('#error-message').show();
+                    $('#error-message').addClass('show');
 
                     // Find the associated label
                     var label = $('label[for="' + input.attr('name') + '"]').text();
@@ -57,7 +57,7 @@
                 $('#error-message').text(errorMessage);
             } else {
                 // Gather form data
-                $('#error-message').hide();
+                $('#error-message').removeClass('show');
                 var formData = $(this).serialize();
 
                 // Perform the AJAX request

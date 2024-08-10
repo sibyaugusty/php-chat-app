@@ -48,15 +48,19 @@ body {
 }
 
 .error-message {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: none;
     height: 50px;
     width: 90%;
     border-radius: 6px;
     background-color: var(--error-bg-color);
     color: #d62020;
 
+}
+
+.error-message.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .title {
