@@ -3,7 +3,7 @@
 <section class="signup-form-container">
     <form class="signup-form" method="post">
         <div id="error-message" class="error-message"></div>
-        <label for="Title" class="title">Sign uUp</label>
+        <label for="Title" class="title">Sign Up</label>
         <div class="row">
             <div class="input-group">
                 <input type="text" name="firstname" id="firstname" placeholder=" " class="input" autocomplete="off">
@@ -36,16 +36,18 @@
             <div class="input-group">
                 <input type="password" name="password" placeholder=" " id="password" class="input" autocomplete="off">
                 <label for="password" class="placeholder">Password</label>
+                <i class="show-password fa-sharp fa-solid fa-eye"></i>
             </div>
             <div class="input-group">
                 <input type="password" name="confirmPassword" placeholder=" " id="confirmPassword" class="input" autocomplete="off">
                 <label for="confirmPassword" class="placeholder">Confirm Password</label>
+                <i class="show-password fa-sharp fa-solid fa-eye"></i>
             </div>
         </div>
 
         <button type="submit" class="submit-button" id="signUpSubmit">Sign Up</button>
         <div class="form-footer">
-            <p class="is-a-member">Already Have An Account? </p><a href="./signin.php">Log In</a>
+            <p class="is-a-member">Already Have An Account? <a href="./signin.php">Log In</a></p>
         </div>
     </form>
 </section>
@@ -116,6 +118,23 @@
                     }
                 });
             }
+        });
+
+        $(document).on('click', '.show-password', function(e) {
+            e.preventDefault();
+
+            var icon = $(this);
+            var input = icon.siblings('.input');
+
+
+            if (input.attr('type') === 'password') {
+                input.attr('type', 'text');
+                icon.removeClass('fa-eye').addClass('fa-eye-slash');
+            } else {
+                input.attr('type', 'password');
+                icon.removeClass('fa-eye-slash').addClass('fa-eye');
+            }
+
         });
     });
 </script>

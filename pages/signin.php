@@ -19,7 +19,8 @@
         <button type="submit" class="submit-button" id="loginFormSubmit">Log In</button>
 
         <div class="form-footer">
-            <p class="is-a-member" r>Don't Have An Account? </p><a href="./signup.php">Sign Up</a>
+            <a href="./forgot-password.php" class="forgot-password">Forgot Password</a>
+            <p class="is-a-member" r>Don't Have An Account? <a href="./signup.php">Sign Up</a></p>
         </div>
     </form>
 
