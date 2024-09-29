@@ -71,7 +71,11 @@
                     },
                     success: function(response) {
                         var response = JSON.parse(response);
-                        alert(response.msg);
+                        // alert(response.msg);
+                        if (response.success == true) {
+                            window.location.href = '../pages/user-profile.php';
+
+                        }
                     },
                     error: function(xhr, status, error) {
                         // Handle errors

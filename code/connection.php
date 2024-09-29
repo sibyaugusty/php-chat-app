@@ -3,9 +3,8 @@ $host = 'localhost';
 $dbname = 'realtime_chatapp';
 $username = 'root';
 $password = '';
-$charset = 'utf8';
 
-$dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
+$dsn = "mysql:host=$host;dbname=$dbname";
 
 try {
     // Create a new PDO instance

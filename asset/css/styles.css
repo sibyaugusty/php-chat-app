@@ -23,7 +23,8 @@ body {
 
 .signup-form-container,
 .signIn-form-container,
-.forgot-password-form-container {
+.forgot-password-form-container,
+.user-profile-container {
     height: 100%;
     width: 100%;
     display: flex;

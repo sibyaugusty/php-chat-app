@@ -1,4 +1,7 @@
 <?php
+// Start the session
+session_start();
+
 require_once '../code/connection.php';
 
 // Handle the request
@@ -50,10 +53,8 @@ function addNewUser($pdo)
 
     try {
         // Prepare the SQL INSERT query
-        $sql = "INSERT INTO `users` (`user_name`, `first_name`, `last_name`, `mobile_number`, `email`, `password`)
-                VALUES (:user_name, :first_name, :last_name, :mobile_number, :email, :password)";
+        $sql = "INSERT INTO `users` (`user_name`, `first_name`, `last_name`, `mobile_number`, `email`, `password`) VALUES (:user_name, :first_name, :last_name, :mobile_number, :email, :password)";
 
-        // Prepare the statement
         $stmt = $pdo->prepare($sql);
 
         // Bind parameters
@@ -81,17 +82,16 @@ function addNewUser($pdo)
 function loginUser($pdo)
 {
 
-    // Parse the serialized form data
     parse_str($_POST['formData'], $formData);
 
     $email = isset($formData['email']) ? $formData['email'] : '';
     $password = isset($formData['password']) ? $formData['password'] : '';
 
-    // Initialize response array
+
     $response = ['success' => false, 'msg' => ''];
 
     try {
-        // Prepare the SQL SELECT query
+
         $sql = "SELECT * FROM `users` WHERE `email` = :email LIMIT 1";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':email', $email);
@@ -99,10 +99,29 @@ function loginUser($pdo)
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user && password_verify($password, $user['password'])) {
-            // Login successful
+
             $response['success'] = true;
             $response['msg'] = 'Login successful!';
-            // Optionally, you can set session variables or other login management here
+
+            $sql = "UPDATE `users` SET online_status = 1 WHERE `user_id` = :user_id LIMIT 1";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':user_id', $user['user_id']);
+            $stmt->execute();
+
+            // Prepare the SQL SELECT query
+            $sql = "SELECT * FROM `users` WHERE `user_id` = :user_id LIMIT 1";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':user_id', $user['user_id']);
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $_SESSION['user_id'] = $user['user_id'];
+            $_SESSION['user_name'] = $user['user_name'];
+            $_SESSION['first_name'] = $user['first_name'];
+            $_SESSION['last_name'] = $user['last_name'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['online_status'] = $user['online_status'];
+            $_SESSION['profile_image'] = $user['profile_image'];
         } else {
             $response['msg'] = 'Invalid email or password.';
         }
