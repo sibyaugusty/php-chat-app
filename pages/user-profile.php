@@ -2,7 +2,6 @@
 
 <section class="user-profile-container">
 
-    <!-- <h1><?php print_r($_SESSION) ?></h1> -->
     <div class="user-profile-navigation">
 
         <div class="user-profile profile-nav">

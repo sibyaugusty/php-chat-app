@@ -1,30 +1,32 @@
 <?php require_once '../includes/header.php'; ?>
-<section class="signIn-form-container">
-    <form class="signIn-form" method="post">
-        <div id="error-message" class="error-message"></div>
-        <label for="Title" class="title">Sign In</label>
-        <div class="row">
-            <div class="input-group">
-                <input type="email" name="email" placeholder=" " id="email" class="input" autocomplete="off">
-                <label for="email" class="placeholder">Email</label>
+<div class="main-body">
+    <section class="signIn-form-container">
+        <form class="signIn-form" method="post">
+            <div id="error-message" class="error-message"></div>
+            <label for="Title" class="title">Sign In</label>
+            <div class="row">
+                <div class="input-group">
+                    <input type="email" name="email" placeholder=" " id="email" class="input" autocomplete="off">
+                    <label for="email" class="placeholder">Email</label>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-group">
-                <input type="password" name="password" placeholder=" " id="password" class="input" autocomplete="off">
-                <label for="password" class="placeholder">Password</label>
+            <div class="row">
+                <div class="input-group">
+                    <input type="password" name="password" placeholder=" " id="password" class="input" autocomplete="off">
+                    <label for="password" class="placeholder">Password</label>
+                </div>
             </div>
-        </div>
 
-        <button type="submit" class="submit-button" id="loginFormSubmit">Log In</button>
+            <button type="submit" class="submit-button" id="loginFormSubmit">Log In</button>
 
-        <div class="form-footer">
-            <a href="./forgot-password.php" class="forgot-password">Forgot Password</a>
-            <p class="is-a-member" r>Don't Have An Account? <a href="./signup.php">Sign Up</a></p>
-        </div>
-    </form>
+            <div class="form-footer">
+                <a href="./forgot-password.php" class="forgot-password">Forgot Password</a>
+                <p class="is-a-member" r>Don't Have An Account? <a href="./signup.php">Sign Up</a></p>
+            </div>
+        </form>
 
-</section>
+    </section>
+</div>
 <?php require_once '../includes/footer.php' ?>
 <script>
     $(document).ready(function() {
@@ -73,7 +75,7 @@
                         var response = JSON.parse(response);
                         // alert(response.msg);
                         if (response.success == true) {
-                            window.location.href = '../pages/user-profile.php';
+                            window.location.href = '../pages/chat-body.php';
 
                         }
                     },
